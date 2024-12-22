@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, memo} from 'react';
 import './notesController.css';
 
 
@@ -23,7 +23,7 @@ function NoteController({notes, setNote}) {
             description: description,
             date: Date.now()
         };
-        setNote([...notes, note]);
+        setNote([note, ...notes]);
         setTitle('');
         setDescription('');
     }
