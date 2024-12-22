@@ -1,5 +1,6 @@
 import './App.css';
 import NoteController from './components/NoteController/NoteController';
+import NoteTable from './components/NotesTable/NoteTable';
 
 function App() {
 
@@ -10,7 +11,7 @@ function App() {
         <NoteController />
       </div>
       <div className="notes-table">
-        
+        <NoteTable />
       </div>
     </div>
   )
