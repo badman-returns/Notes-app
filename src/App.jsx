@@ -1,11 +1,34 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './App.css';
 import NoteController from './components/NoteController/NoteController';
 import NoteTable from './components/NotesTable/NoteTable';
 
 function App() {
   const [notes, setNotes] = useState([]);
-  console.log(notes);
+  const [latest,setLatest] = useState(true); 
+
+  const sortByOldest = ()=>{
+    const noteList = [...notes].sort((a,b)=>{
+      return new Date(b.date)-new Date(a.date);
+    })
+    setNotes(noteList);
+  }
+  const sortByLatest = ()=>{
+    const noteList = [...notes].sort((a,b)=>{
+      return new Date(a.date)-new Date(b.date);
+    })
+    setNotes(noteList);
+  }
+  
+  const sortByDate = () =>{
+    if(latest){
+      sortByOldest();
+      setLatest(false);
+    }else{
+     sortByLatest();
+     setLatest(true);
+    }
+  }
   return (
     <div className='note-container'>
       <h1>Notes app</h1>
@@ -13,7 +36,7 @@ function App() {
         <NoteController notes={notes} setNote={setNotes}/>
       </div>
       <div className="notes-table">
-        <NoteTable notes={notes}/>
+        <NoteTable notes={notes} sortByDate={sortByDate}/>
       </div>
     </div>
   )

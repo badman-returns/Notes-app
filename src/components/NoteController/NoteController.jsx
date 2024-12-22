@@ -21,7 +21,7 @@ function NoteController({notes, setNote}) {
             id: Date.now(),
             title: title,
             description: description,
-            date: new Date().toLocaleString()
+            date: Date.now()
         };
         setNote([...notes, note]);
         setTitle('');
